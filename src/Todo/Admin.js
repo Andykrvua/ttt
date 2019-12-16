@@ -33,12 +33,8 @@ function Admin(props) {
     props.checkAdminData(null);
     if (username === "" || password === "") {
       props.checkAdminData("All fields is required!");
-      // } else if (!validateEmail(email)) {
-      //   props.checkData("Email not valid");
-      // } else {
     } else {
       login();
-      //   props.checkData("Task added");
       setUserName("");
       setPassword("");
     }
@@ -102,7 +98,6 @@ function Admin(props) {
 
 let mapStateToProps = state => {
   return {
-    // TodoList: state.TodoList.todos
     TodoList: state.TodoList.message.tasks,
     Token: state.TodoList.isAdmin,
     checkAdminVal: state.Admin.checkAdminData

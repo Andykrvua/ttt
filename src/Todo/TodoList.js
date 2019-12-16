@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   setTodoListAC,
@@ -12,17 +11,6 @@ import {
 import * as axios from "axios";
 import Loader from "../utils/Loader";
 
-const styles = {
-  ul: {
-    listStyle: "none",
-    margin: "0",
-    padding: "0"
-  },
-  activepage: {
-    fontWeight: "bold"
-  }
-};
-
 function TodoList(props) {
   let baseUrl = `https://uxcandy.com/~shapoval/test-task-backend/v2/?developer=andrey&page=${props.currentPage}&sort_field=${props.sortField}&sort_direction=${props.sortOrder}`;
 
@@ -30,14 +18,14 @@ function TodoList(props) {
     axios.get(baseUrl).then(response => {
       props.fetchUsers(response.data.message);
     });
-  }, [props.currentPage, props.sortField, props.sortOrder, props.update]);
+  }, [props.currentPage, props.sortField, props.sortOrder]);
 
   let totalPage = Math.ceil(props.totalTask / props.pageSize);
   let pages = [];
   for (let i = 1; i <= totalPage; i++) {
     pages.push(i);
   }
-
+  let helper;
   return (
     <>
       <div className="row">
@@ -111,16 +99,18 @@ function TodoList(props) {
       {!props.isReady ? (
         <Loader />
       ) : (
-        <ul className="pagination" style={styles.ul}>
+        <ul className="pagination">
           {props.TodoList.map((task, index) => {
             return <TodoItem key={task.id} index={index} task={task} />;
           })}
 
           {pages.map((p, i) => {
+            props.currentPage == p ? (helper = "active") : (helper = "");
             return (
               <li
                 // className="waves-effect"
-                className={props.currentPage == p && "active"}
+
+                className={helper}
                 key={i}
                 onClick={() => {
                   props.paginator(p);
@@ -165,11 +155,6 @@ let mapDispatchToProps = dispatch => {
       dispatch(sortOrderAC(sortOrderData));
     }
   };
-};
-
-TodoList.propTypes = {
-  toggle: PropTypes.func.isRequired,
-  TodoList: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

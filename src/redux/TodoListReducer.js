@@ -1,7 +1,6 @@
 let initialState = {
   message: {
     tasks: [],
-    //isAdmin: false,
     total_task_count: null
   },
   isReady: false,
@@ -21,7 +20,6 @@ const TodoListReducer = (state = initialState, action) => {
         ...state,
         message: {
           tasks: [...action.todoData.tasks],
-          // tasks: [...state.message.tasks, ...action.todoData.tasks],
           total_task_count: action.todoData.total_task_count
         },
         isReady: true,

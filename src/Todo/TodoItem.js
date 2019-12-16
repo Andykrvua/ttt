@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { toogleTodoItemAC, adminEditedTextAC } from "../redux/TodoListReducer";
 import isAdminAC from "./../redux/AdminReducer";
@@ -35,11 +34,6 @@ const styles = {
 function TodoItem(props) {
   let [taskText, setTaskText] = useState(props.task.text);
 
-  console.log(taskText);
-  // handleChange(event) {
-  //   this.setState({value: event.target.value});
-  // }
-
   let statusChangeUrl = `https://uxcandy.com/~shapoval/test-task-backend/v2/edit/${props.task.id}?developer=andrey`;
 
   function changeStatus() {
@@ -51,12 +45,11 @@ function TodoItem(props) {
     }
     form.append("status", newStatus);
     form.append("token", props.Token);
-    console.log(props.Token);
 
     axios.post(statusChangeUrl, form).then(function(response) {
-      console.log(response);
+      //  console.log(response);
       if (response.data.status === "error") {
-        console.log("error");
+        //  console.log("error");
       } else if (response.data.status === "ok") {
         props.toggle(props.task.id);
       }
@@ -73,13 +66,11 @@ function TodoItem(props) {
     form.append("token", props.Token);
 
     axios.post(statusChangeUrl, form).then(function(response) {
-      console.log(response);
+      // console.log(response);
       if (response.data.status === "error") {
         console.log("error");
         // props.isAdmin("!!!!!!");
       } else if (response.data.status === "ok") {
-        // props.adminEditedText(props.task.id, sendText);
-        console.log(props.TodoList);
         setTaskText(sendText);
       }
     });
@@ -138,9 +129,7 @@ function TodoItem(props) {
 
 let mapStateToProps = state => {
   return {
-    // TodoList: state.TodoList.todos
     TodoList: state.TodoList.message.tasks,
-    // TodoItem: state.task,
     Token: state.TodoList.isAdmin
   };
 };
@@ -156,12 +145,6 @@ let mapDispatchToProps = dispatch => {
       dispatch(isAdminAC(admin));
     }
   };
-};
-
-TodoItem.propTypes = {
-  // todo: PropTypes.object.isRequired,
-  index: PropTypes.number
-  // onChange: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);

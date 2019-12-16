@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { addTodoAC, checkData } from "./../redux/TodoListReducer";
 import { connect } from "react-redux";
 import validateEmail from "../utils/Validate";
@@ -103,7 +102,6 @@ function AddTodo(props) {
 
 let mapStateToProps = state => {
   return {
-    // TodoList: state.TodoList.todos
     TodoList: state.TodoList.message.tasks,
     checkVal: state.TodoList.checkData
   };
@@ -117,10 +115,6 @@ let mapDispatchToProps = dispatch => {
       dispatch(checkData(val));
     }
   };
-};
-
-AddTodo.propTypes = {
-  addTodo: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
