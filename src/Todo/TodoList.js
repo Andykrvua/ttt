@@ -30,19 +30,8 @@ function TodoList(props) {
     axios.get(baseUrl).then(response => {
       props.fetchUsers(response.data.message);
     });
-  }, [props.currentPage, props.sortField, props.sortOrder]);
-  // useEffect(() => {
-  //   if (props.TodoList.length === 0) {
-  //     axios.get(baseUrl).then(response => {
-  //       props.fetchUsers(response.data.message);
-  //     });
-  //   }
-  // }, [props.currentPage]);
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/list2.json")
-  //     .then(response => response.json())
-  //     .then(todoData => props.fetchUsers(todoData));
-  // }, []);
+  }, [props.currentPage, props.sortField, props.sortOrder, props.update]);
+
   let totalPage = Math.ceil(props.totalTask / props.pageSize);
   let pages = [];
   for (let i = 1; i <= totalPage; i++) {
@@ -113,7 +102,14 @@ function TodoList(props) {
       ) : (
         <ul style={styles.ul}>
           {props.TodoList.map((task, index) => {
-            return <TodoItem key={task.id} index={index} task={task} />;
+            return (
+              <TodoItem
+                key={task.id}
+                index={index}
+                task={task}
+                totalPage={totalPage}
+              />
+            );
           })}
           <div>
             Pagination {props.totalTask}
@@ -137,10 +133,6 @@ function TodoList(props) {
                 </span>
               );
             })}
-            {/* <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span> */}
           </div>
         </ul>
       )}

@@ -1,16 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import logger from "redux-logger";
-// import profileReducer from './profile-reducer';
-// import dialogsReducer from './dialogs-reducer';
-// import sidebarReducer from './sidebar-reducer';
-// import usersReducer from './users-reducer';
 import TodoListReducer from "./TodoListReducer";
+import AdminReducer from "./AdminReducer";
 
 let reducers = combineReducers({
   // profilePage: profileReducer,
   // dialogPage: dialogsReducer,
   // sidebar: sidebarReducer,
-  // usersPage: usersReducer
+  Admin: AdminReducer,
   TodoList: TodoListReducer
 });
 
