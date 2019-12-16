@@ -1,22 +1,34 @@
 let initialState = {
   message: {
     tasks: [],
-    isReady: false,
-    isAdmin: false
-  }
+    isAdmin: false,
+    total_task_count: null
+  },
+  isReady: false,
+  checkData: null,
+  pageSize: 3,
+  currentPage: 1,
+  sortField: "id",
+  sortOrder: "asc"
 };
 
 const TodoListReducer = (state = initialState, action) => {
-  //   debugger;
+  // debugger;
   switch (action.type) {
     case "SET_TODOS":
       return {
         ...state,
         message: {
-          //   tasks: [...state.message.tasks, ...action.todoData.message.tasks]
-          tasks: [...state.message.tasks, ...action.todoData]
+          tasks: [...action.todoData.tasks],
+          // tasks: [...state.message.tasks, ...action.todoData.tasks],
+          total_task_count: action.todoData.total_task_count
         },
         isReady: true
+      };
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        currentPage: action.pageN
       };
     case "SET_TOGGLE":
       return {
@@ -59,6 +71,23 @@ const TodoListReducer = (state = initialState, action) => {
           ]
         }
       };
+
+    case "CHECK_DATA":
+      return {
+        ...state,
+        checkData: action.val
+      };
+
+    case "SORT_FIELD":
+      return {
+        ...state,
+        sortField: action.sortData
+      };
+    case "SORT_ORDER":
+      return {
+        ...state,
+        sortOrder: action.sortOrderData
+      };
     default:
       return state;
   }
@@ -67,6 +96,10 @@ const TodoListReducer = (state = initialState, action) => {
 export const setTodoListAC = todoData => ({
   type: "SET_TODOS",
   todoData
+});
+export const setCurPageAC = pageN => ({
+  type: "SET_CURRENT_PAGE",
+  pageN
 });
 export const toogleTodoItemAC = id => ({
   type: "SET_TOGGLE",
@@ -79,6 +112,18 @@ export const removeTodoAC = id => ({
 export const addTodoAC = data => ({
   type: "ADD_TODO",
   data
+});
+export const checkData = val => ({
+  type: "CHECK_DATA",
+  val
+});
+export const sortFieldAC = sortData => ({
+  type: "SORT_FIELD",
+  sortData
+});
+export const sortOrderAC = sortOrderData => ({
+  type: "SORT_ORDER",
+  sortOrderData
 });
 
 export default TodoListReducer;

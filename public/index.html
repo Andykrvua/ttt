@@ -10,6 +10,11 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -29,15 +34,45 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <!-- <div id="my_form">
+      <form action="">
+        <input class="name" type="text" name="username" />
+        <input class="email" type="text" name="email" />
+        <input class="text" type="text" name="text" />
+        <button type="submit">go</button>
+      </form>
+    </div> -->
+    <!-- <script>
+      $(function() {
+        $("#my_form").on("submit", function(e) {
+          e.preventDefault();
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+          var form = new FormData();
+          // name = $(".name").value;
+          name = document.querySelector("#my_form > form > input.name").value;
+          email = document.querySelector("#my_form > form > input.email").value;
+          text = document.querySelector("#my_form > form > input.text").value;
+          form.append("username", name);
+          form.append("email", email);
+          form.append("text", text);
+
+          $.ajax({
+            url:
+              "https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=andrey",
+            crossDomain: true,
+            method: "POST",
+            mimeType: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: form,
+            dataType: "json",
+            success: function(data) {
+              console.log(data);
+            }
+          });
+        });
+      });
+    </script> -->
   </body>
 </html>
