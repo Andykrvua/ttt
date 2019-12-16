@@ -7,10 +7,7 @@ function App() {
   return (
     <>
       <nav>
-        <div className="nav-wrapper container">
-          {/* <a href="#" className="brand-logo">
-            Todo App
-          </a> */}
+        <div className="nav-wrapper">
           <ul className="right">
             <Admin />
           </ul>
@@ -20,7 +17,7 @@ function App() {
         <div className="section">
           <div className="row">
             <div className="col s12">
-              <h1>Todo list</h1>
+              <h2>Todo list</h2>
               <TodoList />
               <h3>Add todo</h3>
               <AddTodo />

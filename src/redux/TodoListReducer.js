@@ -106,7 +106,7 @@ const TodoListReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        isAdmin: action.admin
+        isAdmin: z2
       };
     default:
       return state;

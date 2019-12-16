@@ -1,36 +1,33 @@
 body {
-  /*  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;*/
   background-color: #f3f3f3;
 }
-/*
-.wrapper {
-  color: #f4f4f4;
-  margin: 5rem auto 0;
-  width: 600px;
-}
-
-.rm {
-  background-color: red;
-  border-radius: 50%;
-  color: #fff;
-  border: none;
-} */
-
-/* materialize */
 nav {
   background-color: #4a4a4a !important;
 }
 
 .collection .collection-item:hover {
-  background-color: #ccc;
+  background-color: #ddd;
 }
 
-/* materialize */
+.collection .collection-item:hover textarea {
+  border-color: #a9a9a9 !important;
+  background-color: #fff;
+}
+
+.nav-wrapper ul {
+  position: relative;
+}
+
+.login_message {
+  position: absolute;
+  top: 62px;
+  right: 37px;
+  color: #000;
+}
+
+.logout_button {
+  margin-right: 37px;
+}
 
 .done {
   text-decoration: line-through;

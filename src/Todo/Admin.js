@@ -46,10 +46,10 @@ function Admin(props) {
 
   return (
     <>
-      <span>{props.checkAdminVal}</span>
+      <span className="login_message">{props.checkAdminVal}</span>
       <div className="row">
         {!props.Token ? (
-          <form className="col s6" onSubmit={submitHandler}>
+          <form className="col s6 offset-s5" onSubmit={submitHandler}>
             <div className="row">
               <div className="input-field col s4">
                 <i className="material-icons prefix">verified_user</i>
@@ -62,7 +62,7 @@ function Admin(props) {
                 />
                 <label htmlFor="icon_prefix">Login</label>
               </div>
-              <div className="input-field col s4">
+              <div className="input-field col s5">
                 <i className="material-icons prefix">settings_ethernet</i>
                 <input
                   id="icon_telephone"
@@ -73,7 +73,7 @@ function Admin(props) {
                 />
                 <label htmlFor="icon_telephone">Password</label>
               </div>
-              <div className="input-field col s4">
+              <div className="input-field col s3">
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
@@ -86,6 +86,7 @@ function Admin(props) {
           </form>
         ) : (
           <button
+            className="btn waves-effect waves-light logout_button"
             onClick={() => {
               props.isAdmin(false);
               props.checkAdminData("");

@@ -42,93 +42,72 @@ function TodoList(props) {
     <>
       <div className="row">
         <div className="col s6">
-          <h4>Sort by</h4>
+          <h5>Sort by</h5>
           <div className="collection">
-            <a href="#" className="collection-item">
+            <a
+              href="#"
+              className="collection-item"
+              onClick={() => {
+                props.sortF("id");
+              }}
+            >
               Id
             </a>
-            <a href="#" className="collection-item">
+            <a
+              href="#"
+              className="collection-item"
+              onClick={() => {
+                props.sortF("username");
+              }}
+            >
               Username
             </a>
-            <a href="#" className="collection-item">
+            <a
+              href="#"
+              className="collection-item"
+              onClick={() => {
+                props.sortF("email");
+              }}
+            >
               Email
             </a>
-            <a href="#" className="collection-item">
+            <a
+              href="#"
+              className="collection-item"
+              onClick={() => {
+                props.sortF("status");
+              }}
+            >
               Status
             </a>
           </div>
         </div>
 
         <div className="col s6">
-          <h4>Order by</h4>
+          <h5>Order by</h5>
           <div className="collection">
-            <a href="#" className="collection-item">
-              Id
+            <a
+              href="#"
+              className="collection-item"
+              onClick={() => {
+                props.sortO("asc");
+              }}
+            >
+              Asc
             </a>
-            <a href="#" className="collection-item">
-              Username
+            <a
+              href="#"
+              className="collection-item"
+              onClick={() => {
+                props.sortO("desc");
+              }}
+            >
+              Desc
             </a>
           </div>
         </div>
       </div>
 
-      <div>
-        <div>
-          Порядок сортировки
-          <br />{" "}
-          <span
-            onClick={() => {
-              props.sortO("asc");
-            }}
-          >
-            asc
-          </span>
-          <br />
-          <span
-            onClick={() => {
-              props.sortO("desc");
-            }}
-          >
-            desc
-          </span>
-        </div>
-        <div>
-          Cортировка по
-          <br />
-          <span
-            onClick={() => {
-              props.sortF("id");
-            }}
-          >
-            id
-          </span>
-          <br />
-          <span
-            onClick={() => {
-              props.sortF("username");
-            }}
-          >
-            username
-          </span>
-          <br />
-          <span
-            onClick={() => {
-              props.sortF("email");
-            }}
-          >
-            email
-          </span>
-          <br />
-          <span
-            onClick={() => {
-              props.sortF("status");
-            }}
-          >
-            status
-          </span>
-          <br />
-        </div>
-      </div>
       {!props.isReady ? (
         <Loader />
       ) : (

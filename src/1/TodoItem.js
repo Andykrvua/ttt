@@ -9,26 +9,10 @@ const styles = {
   li: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
-    minHeight: "150px",
-    position: "relative"
+    alignItems: "center"
   },
   input: {
     marginRight: "1rem"
-  },
-  textarea: {
-    border: "1px solid #e0e0e0",
-    borderRadius: "2px"
-  },
-  label: {
-    position: "absolute",
-    top: "20px",
-    left: "20px"
-  },
-  strong: {
-    position: "absolute",
-    top: "20px",
-    left: "60px"
   }
 };
 
@@ -50,7 +34,11 @@ function TodoItem(props) {
       var newStatus = 10;
     }
     form.append("status", newStatus);
-    form.append("token", props.Token);
+    for (var i in props.Token) {
+      var tokenI = i;
+      var tokenVal = props.Token[i];
+    }
+    form.append("token", tokenVal);
     console.log(props.Token);
 
     axios.post(statusChangeUrl, form).then(function(response) {
@@ -70,13 +58,17 @@ function TodoItem(props) {
     var form = new FormData();
     let sendText = taskText + " Edited by admin";
     form.append("text", sendText);
-    form.append("token", props.Token);
+    for (var i in props.Token) {
+      var tokenI = i;
+      var tokenVal = props.Token[i];
+    }
+    form.append("token", tokenVal);
 
     axios.post(statusChangeUrl, form).then(function(response) {
       console.log(response);
       if (response.data.status === "error") {
         console.log("error");
-        // props.isAdmin("!!!!!!");
+        props.isAdmin("!!!!!!");
       } else if (response.data.status === "ok") {
         // props.adminEditedText(props.task.id, sendText);
         console.log(props.TodoList);
@@ -96,33 +88,27 @@ function TodoItem(props) {
       <li className="collection-item" style={styles.li}>
         <span className={classes.join(" ")}>
           {!props.Token ? (
-            <label style={styles.label}>
-              <input
-                type="checkbox"
-                disabled
-                checked={props.task.status == 10}
-                style={styles.input}
-              />
-              <span></span>
-            </label>
+            <input
+              disabled
+              type="checkbox"
+              checked={props.task.status == 10}
+              style={styles.input}
+              // onChange={() => props.toggle(props.task.id)}
+            />
           ) : (
-            <label style={styles.label}>
-              <input
-                type="checkbox"
-                checked={props.task.status == 10}
-                style={styles.input}
-                onChange={() => changeStatus()}
-              />
-              <span></span>
-            </label>
+            <input
+              type="checkbox"
+              checked={props.task.status == 10}
+              style={styles.input}
+              onChange={() => changeStatus()}
+            />
           )}
-          <strong style={styles.strong}>{props.task.id}</strong>
-
+          <strong>{props.task.id}</strong>
+          &nbsp;
           {!props.Token ? (
             props.task.text
           ) : (
             <textarea
-              style={styles.textarea}
               value={taskText}
               onChange={event => setTaskText(event.target.value)}
               onBlur={() => changeTask()}
