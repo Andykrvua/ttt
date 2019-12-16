@@ -46,43 +46,38 @@ function Admin(props) {
 
   return (
     <>
-      <span>{props.checkAdminVal}</span>
       <div className="row">
-        {!props.Token ? (
-          <form className="col s6" onSubmit={submitHandler}>
-            <div className="row">
-              <div className="input-field col s4">
-                <i className="material-icons prefix">verified_user</i>
-                <input
-                  id="icon_prefix"
-                  type="text"
-                  className="validate"
-                  value={username}
-                  onChange={event => setUserName(event.target.value)}
-                />
-                <label htmlFor="icon_prefix">Login</label>
-              </div>
-              <div className="input-field col s4">
-                <i className="material-icons prefix">settings_ethernet</i>
-                <input
-                  id="icon_telephone"
-                  type="text"
-                  className="validate"
-                  onChange={event => setPassword(event.target.value)}
-                  value={password}
-                />
-                <label htmlFor="icon_telephone">Password</label>
-              </div>
-              <div className="input-field col s4">
-                <button
-                  className="btn waves-effect waves-light"
-                  type="submit"
-                  name="action"
-                >
-                  Submit Login
-                </button>
-              </div>
+        <form className="col s12">
+          <div className="row">
+            <div className="input-field col s6">
+              <i className="material-icons prefix">account_circle</i>
+              <input id="icon_prefix" type="text" className="validate" />
+              <label htmlFor="icon_prefix">First Name</label>
             </div>
+            <div className="input-field col s6">
+              <i className="material-icons prefix">phone</i>
+              <input id="icon_telephone" type="tel" className="validate" />
+              <label htmlFor="icon_telephone">Telephone</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div className="login_form">
+        <h1>{props.checkAdminVal}</h1>
+        {!props.Token ? (
+          <form onSubmit={submitHandler}>
+            <input
+              value={username}
+              onChange={event => setUserName(event.target.value)}
+              placeholder="User name"
+            />
+            <input
+              onChange={event => setPassword(event.target.value)}
+              value={password}
+              placeholder="Password"
+            />
+            <button type="submit">Login</button>
           </form>
         ) : (
           <button

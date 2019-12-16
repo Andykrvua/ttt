@@ -40,38 +40,6 @@ function TodoList(props) {
 
   return (
     <>
-      <div className="row">
-        <div className="col s6">
-          <h4>Sort by</h4>
-          <div className="collection">
-            <a href="#" className="collection-item">
-              Id
-            </a>
-            <a href="#" className="collection-item">
-              Username
-            </a>
-            <a href="#" className="collection-item">
-              Email
-            </a>
-            <a href="#" className="collection-item">
-              Status
-            </a>
-          </div>
-        </div>
-
-        <div className="col s6">
-          <h4>Order by</h4>
-          <div className="collection">
-            <a href="#" className="collection-item">
-              Id
-            </a>
-            <a href="#" className="collection-item">
-              Username
-            </a>
-          </div>
-        </div>
-      </div>
-
       <div>
         <div>
           Порядок сортировки
@@ -132,25 +100,25 @@ function TodoList(props) {
       {!props.isReady ? (
         <Loader />
       ) : (
-        <ul className="pagination" style={styles.ul}>
+        <ul style={styles.ul}>
           {props.TodoList.map((task, index) => {
             return <TodoItem key={task.id} index={index} task={task} />;
           })}
-
-          {pages.map((p, i) => {
-            return (
-              <li
-                // className="waves-effect"
-                className={props.currentPage == p && "active"}
-                key={i}
-                onClick={() => {
-                  props.paginator(p);
-                }}
-              >
-                <a href="#">{p}</a>
-              </li>
-            );
-          })}
+          <div>
+            {pages.map((p, i) => {
+              return (
+                <span
+                  className={props.currentPage == p && "activepage"}
+                  key={i}
+                  onClick={() => {
+                    props.paginator(p);
+                  }}
+                >
+                  {p}
+                </span>
+              );
+            })}
+          </div>
         </ul>
       )}
     </>

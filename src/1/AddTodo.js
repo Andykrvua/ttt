@@ -60,43 +60,53 @@ function AddTodo(props) {
               <label htmlFor="textarea1">Task</label>
             </div>
 
-            <div className="input-field col s4">
+            <div className="input-field col s6">
               <i className="material-icons prefix">account_circle</i>
               <input
-                id="icon_prefix2"
+                id="icon_prefix"
                 type="text"
                 className="validate"
                 value={username}
                 onChange={event => setUserName(event.target.value)}
               />
-              <label htmlFor="icon_prefix2">Username</label>
+              <label htmlFor="icon_prefix">Username</label>
             </div>
 
-            <div className="input-field col s4">
-              <i className="material-icons prefix">email</i>
+            <div className="input-field col s6">
+              <i className="material-icons prefix">phone</i>
               <input
-                id="icon_telephone2"
+                id="icon_telephone"
                 type="text"
                 className="validate"
                 onChange={event => setEmail(event.target.value)}
                 value={email}
               />
-              <label htmlFor="icon_telephone2">Email</label>
-            </div>
-
-            <div className="input-field col s4">
-              <button
-                className="btn waves-effect waves-light"
-                type="submit"
-                name="action"
-              >
-                Submit
-                <i className="material-icons right">send</i>
-              </button>
+              <label htmlFor="icon_telephone">Email</label>
             </div>
           </div>
         </form>
       </div>
+
+      {props.checkVal}
+      <form style={{ marginBottom: "1rem" }} onSubmit={submitHandler}>
+        <textarea
+          value={text}
+          onChange={event => setText(event.target.value)}
+          placeholder="Task"
+        />
+        <input
+          value={username}
+          onChange={event => setUserName(event.target.value)}
+          placeholder="User name"
+        />
+        <input
+          onChange={event => setEmail(event.target.value)}
+          value={email}
+          // type="email"
+          placeholder="email"
+        />
+        <button type="submit">Add todo</button>
+      </form>
     </>
   );
 }

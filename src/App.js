@@ -5,12 +5,30 @@ import Admin from "./Todo/Admin";
 
 function App() {
   return (
-    <div className="wrapper">
-      <Admin />
-      <h1>Todo list</h1>
-      <AddTodo />
-      <TodoList />
-    </div>
+    <>
+      <nav>
+        <div className="nav-wrapper container">
+          {/* <a href="#" className="brand-logo">
+            Todo App
+          </a> */}
+          <ul className="right">
+            <Admin />
+          </ul>
+        </div>
+      </nav>
+      <div className="container">
+        <div className="section">
+          <div className="row">
+            <div className="col s12">
+              <h1>Todo list</h1>
+              <TodoList />
+              <h3>Add todo</h3>
+              <AddTodo />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

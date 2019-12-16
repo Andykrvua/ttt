@@ -1,7 +1,7 @@
 let initialState = {
   message: {
     tasks: [],
-    isAdmin: false,
+    //isAdmin: false,
     total_task_count: null
   },
   isReady: false,
@@ -60,14 +60,6 @@ const TodoListReducer = (state = initialState, action) => {
           })
         }
       };
-    case "REMOVE_TODO":
-      return {
-        ...state,
-        message: {
-          tasks: state.message.tasks.filter(todo => todo.id !== action.id)
-        }
-      };
-
     case "ADD_TODO":
       let { text, username, email } = action.data;
       return {
@@ -131,10 +123,6 @@ export const setCurPageAC = pageN => ({
 });
 export const toogleTodoItemAC = id => ({
   type: "SET_TOGGLE",
-  id
-});
-export const removeTodoAC = id => ({
-  type: "REMOVE_TODO",
   id
 });
 export const addTodoAC = data => ({
