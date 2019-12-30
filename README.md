@@ -1,3 +1,7 @@
+## Тестовый проект.
+TODOlist с локальным стейтом и получением тасков с удаленного сервера.
+Пагинация, сортировка, отметка о выполнении, редактирование, отметка о редактировании администратором, авторизация через токен.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
